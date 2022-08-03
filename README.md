@@ -6,6 +6,8 @@ For WebRTC, I use [flutter_webrtc](https://pub.dev/packages/flutter_webrtc) and 
 
 For server websocket, I use nodejs with [ws](https://github.com/websockets/ws) library.
 
+https://user-images.githubusercontent.com/52790353/182588642-975a8187-0343-4757-bb60-5aec3af1afd1.mp4
+
 ## Server code
 
 To make your own server run this code with `nodejs`. It create a websocket server in port 8080.
