@@ -40,8 +40,12 @@ class _HomepageState extends State<Homepage> {
           // If the client receive an offer
           if (decoded["event"] == "offer") {
             // Set the offer SDP to remote description
-            await peerConnection?.setRemoteDescription(RTCSessionDescription(
-                decoded["data"]["sdp"], decoded["data"]["type"]));
+            await peerConnection?.setRemoteDescription(
+              RTCSessionDescription(
+                decoded["data"]["sdp"],
+                decoded["data"]["type"],
+              ),
+            );
 
             // Create an answer
             RTCSessionDescription answer = await peerConnection!.createAnswer();
@@ -52,7 +56,10 @@ class _HomepageState extends State<Homepage> {
             // Send the answer to the other peer
             channel.sink.add(
               jsonEncode(
-                {"event": "answer", "data": answer.toMap()},
+                {
+                  "event": "answer",
+                  "data": answer.toMap(),
+                },
               ),
             );
           }
@@ -133,7 +140,6 @@ class _HomepageState extends State<Homepage> {
     };
 
     peerConnection?.onIceCandidate = (RTCIceCandidate candidate) {
-      print("ICE-CANDIDATE: ${candidate.toMap()}");
       channel.sink.add(
         jsonEncode({"event": "ice", "data": candidate.toMap()}),
       );
